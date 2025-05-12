@@ -1,0 +1,16 @@
+# IDEs directories
+.idea/
+.vscode/
+.vs/
+
+# build
+build/
+
+# libs
+libs/
+
+# Copied shaders
+ShadersContent.h
+
+# Output
+resources/render/

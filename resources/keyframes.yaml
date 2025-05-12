@@ -1,0 +1,353 @@
+---
+
+# Coordinates
+z:  &z -10
+
+# Colors
+c0: &c0 [ 0.8200, 0.4600, 0.4900 ]
+c1: &c1 [ 0.5700, 0.7400, 0.4200 ]
+c2: &c2 [ 0.3400, 0.7600, 0.7400 ]
+c3: &c3 [ 1.0000, 0.5900, 0.1900 ]
+c4: &c5 [ 0.6825, 0.6375, 0.4600 ]
+
+# Offset
+start: 1080
+
+# Triangle composition
+t_tr0: &t_tr0     1
+t_tr1: &t_tr1   480
+t_tr2: &t_tr2   720
+t_tr3: &t_tr3   960
+t_tr4: &t_tr4  1200
+t_tr5: &t_tr5  1440
+
+# Color change
+t_co0: &t_co0  1680
+t_co1: &t_co1  1800
+t_co2: &t_co2  1920
+t_co3: &t_co3  2040
+
+# Random phase
+t_rn0: &t_rn0  2520
+t_rn1: &t_rn1  4320
+
+# Explosion
+t_ex0: &t_ex0  4440
+t_ex1: &t_ex1  4560
+t_ex2: &t_ex2  4680
+t_ex3: &t_ex3  4800
+
+# Orbit
+t_or0: &t_or0  4920
+t_or1: &t_or1  5160
+t_or2: &t_or2  5400
+t_or3: &t_or3  5640
+t_or4: &t_or4  5880
+
+# End
+t_en0: &t_en0  6020
+t_en1: &t_en1  6260
+t_end: *t_en1
+
+keyframes:
+# Triangle composition
+  - render: {}
+    start: 0
+  - positions:
+      0: [ 0.0, 0.0, *z]
+    colors: &starting_colors
+      0: &one [ 1.0, 1.0, 1.0 ]
+      1: *one
+      2: *one
+      3: *one
+      4: *one
+      5: *one
+      6: *one
+      7: *one
+      8: *one
+      9: *one
+    radii:
+      0: 2.0
+      1: 1.0
+      2: 1.0
+      3: 1.0
+      4: 1.0
+      5: 1.0
+      6: 1.0
+      7: 1.0
+      8: 1.0
+      9: 1.0
+    render:
+      0: 1
+    rotationNormals:
+      0: &normal [ 0.0, 1.0, 0.0 ]
+      1: *normal
+      2: *normal
+      3: *normal
+      4: *normal
+      5: *normal
+      6: *normal
+      7: *normal
+      8: *normal
+      9: *normal
+    camera: &camera0 [ 0.0, 0.0, 0.0 ]
+    cameraNormal: &defaultCameraNormal [ 0.0, 1.0, 0.0 ]
+    start: *t_tr0
+    merge:
+      pos: "easeIn"
+      col: "glm::mix"
+
+  - positions:
+      0: [ 0.0, -6.0, *z ]
+    radii:
+      0: 1.0
+    camera: &camera1 [ -10.0, 0.0, -20.0 ]
+    start: *t_tr1
+
+  - positions:
+      0: &p_t0 [ 0.0, 6.862306, *z ]
+      1: *p_t0
+      2: *p_t0
+    render:
+      0: 1
+      1: 1
+      2: 1
+    camera: *camera0
+    start: *t_tr2
+
+  - positions:
+      0: *p_t0
+      1: &p_t1 [  1.5, 2.008402, *z ]
+      2: &p_t2 [ -1.5, 2.008402, *z ]
+      3: *p_t2
+      4: *p_t2
+      5: *p_t1
+    render:
+      0: 1
+      1: 1
+      2: 1
+      3: 1
+      4: 1
+      5: 1
+    camera: *camera1
+    start: *t_tr3
+
+  - positions:
+      0: *p_t0
+      1: *p_t1
+      2: *p_t2
+      3: &p_t3 [ -3.0, -2.845898, *z ]
+      4: &p_t4 [  0.0, -2.845898, *z ]
+      5: &p_t5 [  3.0, -2.845898, *z ]
+      6: *p_t3
+      7: *p_t3
+      8: *p_t4
+      9: *p_t5
+    render: &rendered
+      0: 1
+      1: 1
+      2: 1
+      3: 1
+      4: 1
+      5: 1
+      6: 1
+      7: 1
+      8: 1
+      9: 1
+    camera: *camera0
+    start: *t_tr4
+
+  - positions: &p_triangle
+      0: *p_t0
+      1: *p_t1
+      2: *p_t2
+      3: *p_t3
+      4: *p_t4
+      5: *p_t5
+      6:       [ -4.5, -7.7, *z ]
+      7:       [ -1.5, -7.7, *z ]
+      8:       [  1.5, -7.7, *z ]
+      9:       [  4.5, -7.7, *z ]
+    camera: *camera1
+    start: *t_tr5
+
+# Color change
+  - colors:
+      0: *c0
+    camera: &camera_zero [ 0.0, 0.0, 0.0 ]
+    start: *t_co0
+
+  - colors:
+      0: *c0
+      1: *c1
+      2: *c1
+    start: *t_co1
+
+  - colors:
+      0: *c0
+      1: *c1
+      2: *c1
+      3: *c2
+      4: *c2
+      5: *c2
+    start: *t_co2
+
+  - colors: &final_colors
+      0: *c0
+      1: *c1
+      2: *c1
+      3: *c2
+      4: *c2
+      5: *c2
+      6: *c3
+      7: *c3
+      8: *c3
+      9: *c3
+    start: *t_co3
+
+# Random phase end
+  - positions: *p_triangle
+    colors: *final_colors
+    radii:
+      0: 1.0
+      1: 1.0
+      2: 1.0
+      3: 1.0
+      4: 1.0
+      5: 1.0
+      6: 1.0
+      7: 1.0
+      8: 1.0
+      9: 1.0
+    render: *rendered
+    camera: *camera_zero
+    cameraNormal: *defaultCameraNormal
+    start: *t_rn1
+
+# Explosion
+  - positions: &merged_spheres
+      0: &zero [ 0.0, 0.0, *z ]
+      1: *zero
+      2: *zero
+      3: *zero
+      4: *zero
+      5: *zero
+      6: *zero
+      7: *zero
+      8: *zero
+      9: *zero
+    colors: &average_colors
+      0: *c5
+      1: *c5
+      2: *c5
+      3: *c5
+      4: *c5
+      5: *c5
+      6: *c5
+      7: *c5
+      8: *c5
+      9: *c5
+    start: *t_ex0
+    merge:
+      pos: "glm::mix"
+      col: "glm::mix"
+
+  - colors: *starting_colors
+    start: *t_ex1
+
+  - positions:
+      0: [  40.0000,  0.0000, *z]
+      1: [  32.3606,  23.511, *z]
+      2: [  12.3606,  38.042, *z]
+      3: [ -12.3606,  38.042, *z]
+      4: [ -32.3606,  23.511, *z]
+      5: [ -40.0000,  0.0000, *z]
+      6: [ -32.3606, -23.511, *z]
+      7: [ -12.3606, -38.042, *z]
+      8: [  12.3606, -38.042, *z]
+      9: [  32.3606, -23.511, *z]
+    start: *t_ex2
+
+  - positions: *merged_spheres
+    start: *t_ex3
+
+# Orbit
+  - positions: &orbit_start
+      0: [ 0.0000,   0.0000, *z ]
+      1: [ 2.500000, 0.000000, *z ]
+      5: [ -2.500000, 0.000000, *z ]
+      3: [ 5.0,  0.0, -12.5 ]
+      6: [ 0.0,  0.0, -5.0 ]
+      8: [ -5.0, 0.0, -12.5 ]
+      2: [ 0.0,  7.5,  -10.0 ]
+      4: [ 0.0,  0.0,  -17.5 ]
+      7: [ 0.0,  -7.0, -10.0 ]
+      9: [ 0.0, 0.0, -2.5 ]
+    colors:
+      0: *c0
+      1: *c1
+      2: *c3
+      3: *c2
+      4: *c3
+      5: *c1
+      6: *c2
+      7: *c3
+      8: *c2
+      9: *c3
+    angles:
+      0: 0.0000
+
+      1: 18.8495
+      5: 18.8495
+
+      3: 12.5663
+      6: 12.5663
+      8: 12.5663
+
+      2: 9.4247
+      4: 9.4247
+      7: 9.4247
+      9: 9.4247
+    rotationNormals:
+      0: [ 0.0,   0.0,   1.0 ]
+      1: [ 0.0,   0.0,   1.0 ]
+      5: [ 0.0,   0.0,   1.0 ]
+      3: [ 0.0,   1.0,   0.0 ]
+      6: [ 0.0,   1.0,   0.0 ]
+      8: [ 0.0,   1.0,   0.0 ]
+      2: [ 1.0,   0.0,   0.0 ]
+      4: [ 1.0,   0.0,   0.0 ]
+      7: [ 1.0,   0.0,   0.0 ]
+      9: [ 1.0,   0.0,   0.0 ]
+    cameraNormal: [ 0.0, 1.0, 0.0 ]
+    start: *t_or0
+    merge:
+      pos: "orbit"
+      col: "glm::mix"
+
+  - positions: *orbit_start
+    camera: [ 0.0, 0.0, -20.0 ]
+    start: *t_or1
+
+  - positions: *orbit_start
+    camera: [ 0.0, 0.0, 0.0 ]
+    start: *t_or2
+
+  - positions: *orbit_start
+    camera: [ 0.0, 0.0, -20.0 ]
+    start: *t_or3
+
+  - positions: *orbit_start
+    camera: [ 0.0, 0.0, 0.0 ]
+    start: *t_or4
+    merge:
+      pos: "glm::mix"
+      col: "glm::mix"
+
+# End
+  - positions: *merged_spheres
+    colors: *average_colors
+    start: *t_en0
+
+  - colors: *starting_colors
+    start: *t_en1

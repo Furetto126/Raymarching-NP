@@ -1,0 +1,3 @@
+da fare dentro ./render
+
+ffmpeg -f rawvideo -framerate 60 -pix_fmt rgba -s 1920x1080 -i frames.raw -vf "vflip" output.mp4
